@@ -14,7 +14,8 @@ class CaixaDaLanchonete {
 
     calcularValorDaCompra(metodoDePagamento, itens) {
         const produtosPrincipais = ["cafe", "suco", "sanduiche", "salgado"]
-        if (metodoDePagamento === "dinheiro" || metodoDePagamento === "debito" || metodoDePagamento === "credito") {
+        const formasDePagamentoValidas = ["dinheiro", "debito", "credito"]
+        if (formasDePagamentoValidas.includes(metodoDePagamento)) {
             if (!itens.length) {
                 return "Não há itens no carrinho de compra!"
             } else {
@@ -34,7 +35,6 @@ class CaixaDaLanchonete {
                     const veririficaProdutoPrincipal = (elementoAtual) => produtosPrincipais.includes(elementoAtual)
                     const temProdutoPrincipal = listaDeProdutosArray.some(veririficaProdutoPrincipal)
 
-
                     let itemExtra1, itemExtra2 = false
                     if (listaDeProdutosArray.includes("chantily") && listaDeProdutosArray.includes("cafe")) {
                         itemExtra1 = true
@@ -42,6 +42,7 @@ class CaixaDaLanchonete {
                     if (listaDeProdutosArray.includes("queijo") && listaDeProdutosArray.includes("sanduiche")) {
                         itemExtra2 = true
                     }
+
                     if (!temProdutoPrincipal) {
                         return "Item extra não pode ser pedido sem o principal"
                     } else if (temProdutoPrincipal && listaDeProdutosArray.includes("chantily") && !itemExtra1) {
@@ -75,16 +76,11 @@ class CaixaDaLanchonete {
                 } else {
                     return "Item inválido!"
                 }
-
             }
         } else {
             return "Forma de pagamento inválida!"
         }
-
-
     }
-
 }
-
 export { CaixaDaLanchonete };
 
