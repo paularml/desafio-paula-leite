@@ -32,23 +32,23 @@ class CaixaDaLanchonete {
                 const itemEhValido = listaDeProdutosArray.some(item => produtos.includes(item))
 
                 if (itemEhValido) {
-                    const temProdutoPrincipal = listaDeProdutosArray.some(item => produtosPrincipais.includes(item));
-
-                    let itemExtra1, itemExtra2 = false
-                    if (listaDeProdutosArray.includes("chantily") && listaDeProdutosArray.includes("cafe")) {
-                        itemExtra1 = true
-                    }
-                    if (listaDeProdutosArray.includes("queijo") && listaDeProdutosArray.includes("sanduiche")) {
-                        itemExtra2 = true
-                    }
+                    const temProdutoPrincipal = listaDeProdutosArray.some(item => produtosPrincipais.includes(item))
+                    const itemExtraDoCafe = ["chantily"]
+                    const itemExtraDoSanduiche = ["queijo"]
+                    const itemExtraComCafe = listaDeProdutosArray.some(item => itemExtraDoCafe.includes(item))
+                    const itemExtraComSanduiche = listaDeProdutosArray.some(item => itemExtraDoSanduiche.includes(item))
 
                     if (!temProdutoPrincipal) {
                         return "Item extra não pode ser pedido sem o principal"
-                    } else if (temProdutoPrincipal && listaDeProdutosArray.includes("chantily") && !itemExtra1) {
-                        return "Item extra não pode ser pedido sem o principal"
-                    } else if (temProdutoPrincipal && listaDeProdutosArray.includes("queijo") && !itemExtra2) {
+                    }
+
+                    else if (temProdutoPrincipal && itemExtraComCafe && !(listaDeProdutosArray.includes("cafe"))) {
                         return "Item extra não pode ser pedido sem o principal"
                     }
+                    else if (temProdutoPrincipal && itemExtraComSanduiche && !(listaDeProdutosArray.includes("sanduiche"))) {
+                        return "Item extra não pode ser pedido sem o principal"
+                    }
+
                     else {
                         let preco = 0
                         for (let i = 0; i < itens.length; i++) {
