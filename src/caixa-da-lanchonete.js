@@ -31,12 +31,10 @@ class CaixaDaLanchonete {
                 const itemEhValido = listaDeProdutosArray.some(veririficaItemEhValido)
 
                 if (itemEhValido) {
-                    let verificaProdutoPrincipal = 0
-                    for (let item of produtosPrincipais) {
-                        if (listaDeProdutosArray.includes(item)) {
-                            verificaProdutoPrincipal += 1
-                        }
-                    }
+                    const veririficaProdutoPrincipal = (elementoAtual) => produtosPrincipais.includes(elementoAtual)
+                    const temProdutoPrincipal = listaDeProdutosArray.some(veririficaProdutoPrincipal)
+
+
                     let itemExtra1, itemExtra2 = false
                     if (listaDeProdutosArray.includes("chantily") && listaDeProdutosArray.includes("cafe")) {
                         itemExtra1 = true
@@ -44,11 +42,11 @@ class CaixaDaLanchonete {
                     if (listaDeProdutosArray.includes("queijo") && listaDeProdutosArray.includes("sanduiche")) {
                         itemExtra2 = true
                     }
-                    if (verificaProdutoPrincipal === 0) {
+                    if (!temProdutoPrincipal) {
                         return "Item extra não pode ser pedido sem o principal"
-                    } else if (verificaProdutoPrincipal !== 0 && listaDeProdutosArray.includes("chantily") && !itemExtra1) {
+                    } else if (temProdutoPrincipal && listaDeProdutosArray.includes("chantily") && !itemExtra1) {
                         return "Item extra não pode ser pedido sem o principal"
-                    } else if (verificaProdutoPrincipal !== 0 && listaDeProdutosArray.includes("queijo") && !itemExtra2) {
+                    } else if (temProdutoPrincipal && listaDeProdutosArray.includes("queijo") && !itemExtra2) {
                         return "Item extra não pode ser pedido sem o principal"
                     }
                     else {
