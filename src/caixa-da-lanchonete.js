@@ -1,5 +1,5 @@
 class CaixaDaLanchonete {
-    produtos = ["cafe", "chantily", "suco", "sanduiche", "queijo", "salgado", "combo1", "combo2"]
+
 
     precoProdutos = {
         cafe: 300,
@@ -13,6 +13,7 @@ class CaixaDaLanchonete {
     }
 
     calcularValorDaCompra(metodoDePagamento, itens) {
+        const produtos = ["cafe", "chantily", "suco", "sanduiche", "queijo", "salgado", "combo1", "combo2"]
         const produtosPrincipais = ["cafe", "suco", "sanduiche", "salgado"]
         const formasDePagamentoValidas = ["dinheiro", "debito", "credito"]
         if (formasDePagamentoValidas.includes(metodoDePagamento)) {
@@ -28,12 +29,10 @@ class CaixaDaLanchonete {
 
                 let listaDeProdutosArray = listaDeProdutos.split(" ")
 
-                const veririficaItemEhValido = (elementoAtual) => this.produtos.includes(elementoAtual)
-                const itemEhValido = listaDeProdutosArray.some(veririficaItemEhValido)
+                const itemEhValido = listaDeProdutosArray.some(item => produtos.includes(item))
 
                 if (itemEhValido) {
-                    const veririficaProdutoPrincipal = (elementoAtual) => produtosPrincipais.includes(elementoAtual)
-                    const temProdutoPrincipal = listaDeProdutosArray.some(veririficaProdutoPrincipal)
+                    const temProdutoPrincipal = listaDeProdutosArray.some(item => produtosPrincipais.includes(item));
 
                     let itemExtra1, itemExtra2 = false
                     if (listaDeProdutosArray.includes("chantily") && listaDeProdutosArray.includes("cafe")) {
