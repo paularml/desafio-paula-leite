@@ -20,12 +20,7 @@ class CaixaDaLanchonete {
             if (!itens.length) {
                 return "Não há itens no carrinho de compra!"
             } else {
-                let listaDeProdutos = ""
-                for (let j = 0; j < itens.length; j++) {
-                    let item = itens[j].split(",")
-                    let codigoProduto = item[0]
-                    listaDeProdutos += codigoProduto + " "
-                }
+                const listaDeProdutos = itens.map(item => item.split(",")[0]).join(" ");
 
                 let listaDeProdutosArray = listaDeProdutos.split(" ")
 
