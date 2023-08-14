@@ -16,13 +16,13 @@ class CaixaDaLanchonete {
         const produtos = ["cafe", "chantily", "suco", "sanduiche", "queijo", "salgado", "combo1", "combo2"]
         const produtosPrincipais = ["cafe", "suco", "sanduiche", "salgado"]
         const formasDePagamentoValidas = ["dinheiro", "debito", "credito"]
+
         if (formasDePagamentoValidas.includes(metodoDePagamento)) {
             if (!itens.length) {
                 return "Não há itens no carrinho de compra!"
             } else {
                 const listaDeProdutos = itens.map(item => item.split(",")[0]).join(" ")
-
-                let listaDeProdutosArray = listaDeProdutos.split(" ")
+                const listaDeProdutosArray = listaDeProdutos.split(" ")
 
                 const itemEhValido = listaDeProdutosArray.some(item => produtos.includes(item))
 
@@ -36,7 +36,6 @@ class CaixaDaLanchonete {
                     if (!temProdutoPrincipal) {
                         return "Item extra não pode ser pedido sem o principal"
                     }
-
                     else if (temProdutoPrincipal && temItemExtraDoCafe && !(listaDeProdutosArray.includes("cafe"))) {
                         return "Item extra não pode ser pedido sem o principal"
                     }
@@ -49,6 +48,7 @@ class CaixaDaLanchonete {
                             const [codigoProduto, quantidade] = item.split(",")
                             return total + this.precoProdutos[codigoProduto] * Number(quantidade)
                         }, 0)
+
                         if (preco === 0) {
                             return "Quantidade inválida!"
                         } else {
@@ -58,6 +58,7 @@ class CaixaDaLanchonete {
                             else if (metodoDePagamento === "credito") {
                                 preco = preco * 1.03
                             }
+
                             preco = Number((preco / 100).toFixed(2))
 
                             const locale = 'pt-BR'
