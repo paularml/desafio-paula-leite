@@ -24,7 +24,7 @@ class CaixaDaLanchonete {
                 const listaDeProdutos = itens.map(item => item.split(",")[0]).join(" ")
                 const listaDeProdutosArray = listaDeProdutos.split(" ")
 
-                const itemEhValido = listaDeProdutosArray.some(item => produtos.includes(item))
+                const itemEhValido = listaDeProdutosArray.every(item => produtos.includes(item))
 
                 if (itemEhValido) {
                     const temProdutoPrincipal = listaDeProdutosArray.some(item => produtosPrincipais.includes(item))
