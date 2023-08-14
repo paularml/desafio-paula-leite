@@ -35,17 +35,17 @@ class CaixaDaLanchonete {
                     const temProdutoPrincipal = listaDeProdutosArray.some(item => produtosPrincipais.includes(item))
                     const itemExtraDoCafe = ["chantily"]
                     const itemExtraDoSanduiche = ["queijo"]
-                    const itemExtraComCafe = listaDeProdutosArray.some(item => itemExtraDoCafe.includes(item))
-                    const itemExtraComSanduiche = listaDeProdutosArray.some(item => itemExtraDoSanduiche.includes(item))
+                    const temItemExtraDoCafe = listaDeProdutosArray.some(item => itemExtraDoCafe.includes(item))
+                    const temItemExtraDoSanduiche = listaDeProdutosArray.some(item => itemExtraDoSanduiche.includes(item))
 
                     if (!temProdutoPrincipal) {
                         return "Item extra não pode ser pedido sem o principal"
                     }
 
-                    else if (temProdutoPrincipal && itemExtraComCafe && !(listaDeProdutosArray.includes("cafe"))) {
+                    else if (temProdutoPrincipal && temItemExtraDoCafe && !(listaDeProdutosArray.includes("cafe"))) {
                         return "Item extra não pode ser pedido sem o principal"
                     }
-                    else if (temProdutoPrincipal && itemExtraComSanduiche && !(listaDeProdutosArray.includes("sanduiche"))) {
+                    else if (temProdutoPrincipal && temItemExtraDoSanduiche && !(listaDeProdutosArray.includes("sanduiche"))) {
                         return "Item extra não pode ser pedido sem o principal"
                     }
 
