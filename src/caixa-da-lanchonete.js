@@ -20,7 +20,7 @@ class CaixaDaLanchonete {
             if (!itens.length) {
                 return "Não há itens no carrinho de compra!"
             } else {
-                const listaDeProdutos = itens.map(item => item.split(",")[0]).join(" ");
+                const listaDeProdutos = itens.map(item => item.split(",")[0]).join(" ")
 
                 let listaDeProdutosArray = listaDeProdutos.split(" ")
 
@@ -45,13 +45,11 @@ class CaixaDaLanchonete {
                     }
 
                     else {
-                        let preco = 0
-                        for (let i = 0; i < itens.length; i++) {
-                            let item = itens[i].split(",")
-                            let codigoProduto = item[0]
-                            let quantidade = Number(item[1])
-                            preco += this.precoProdutos[codigoProduto] * quantidade
-                        } if (preco === 0) {
+                        let preco = itens.reduce((total, item) => {
+                            const [codigoProduto, quantidade] = item.split(",")
+                            return total + this.precoProdutos[codigoProduto] * Number(quantidade)
+                        }, 0)
+                        if (preco === 0) {
                             return "Quantidade inválida!"
                         } else {
                             if (metodoDePagamento === "dinheiro") {
